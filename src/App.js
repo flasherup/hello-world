@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, ListGroup, Button} from 'react-bootstrap';
 import AddForm from './components/AddForm';
+import {main} from './components/practice'
 
 class App extends Component {
     constructor(props) {
@@ -9,6 +10,7 @@ class App extends Component {
         this.state = {
             songs:[]
         }
+        main();
     }
     render() {
         return (
@@ -52,7 +54,6 @@ class App extends Component {
                 </Row>
             </ListGroup.Item>
         ));
-        console.log(listItems);
         return listItems;
     }
 
