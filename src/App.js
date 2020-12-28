@@ -13,6 +13,7 @@ class App extends Component {
         main();
     }
     render() {
+        console.log("test")
         return (
             <Container>
                 <Row>
