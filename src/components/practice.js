@@ -1,6 +1,6 @@
 export function main() {
     const base = new Base();
-    base.method();
+    base.method('test');
 
 }
 
@@ -11,10 +11,10 @@ class Base {
 
     }
 
-    method() {
-        console.log('method:',this.field);
+    method(param) {
+        console.log('method:',param);
         const testThis = () => {
-            console.log('function:', this.field);
+            console.log('function:', param);
         }
         testThis();
     }
