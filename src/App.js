@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, ListGroup, Button} from 'react-bootstrap';
 import AddForm from './components/AddForm';
-import Counter, {birthday} from './components/Counter';
+import Counter from './components/Counter'
 
 class App extends Component {
     constructor(props) {
@@ -48,7 +48,7 @@ class App extends Component {
 
     listFromArray(songs) {
         const listItems = songs.map((song, index)=>(
-            <ListGroup.Item key={`key${ index }${ song.song }`}>
+            <ListGroup.Item key={`songKey${ index }`}>
                 <Row>
                     <Col>
                         {`${ index + 1 }: ${ song.artist }, ${ song.song }`}
