@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, ListGroup, Button} from 'react-bootstrap';
 import AddForm from './components/AddForm';
-import {main} from './components/practice'
+import {main} from './components/practice';
+import Counter from './components/Counter'
 
 class App extends Component {
     constructor(props) {
@@ -27,6 +28,15 @@ class App extends Component {
                 </Row>
                 <Row>
                     <Col>
+                        <Counter 
+                            count={ this.state.songs.length }
+                        >
+                            Child inside { this.state.songs.length }
+                        </Counter>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
                         <h2>My songs list:</h2>
                     </Col>
                 </Row>
@@ -43,7 +53,7 @@ class App extends Component {
 
     listFromArray(songs) {
         const listItems = songs.map((song, index)=>(
-            <ListGroup.Item key={`${ song.artist }${ song.song }`}>
+            <ListGroup.Item key={`songKey${ index }`}>
                 <Row>
                     <Col>
                         {`${ index + 1 }: ${ song.artist }, ${ song.song }`}
