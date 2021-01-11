@@ -12,6 +12,7 @@ class App extends Component {
         }
     }
     render() {
+        console.log('this.state.songs_2', this.state.songs);
         return (
             <Container>
                 <Row>
@@ -42,35 +43,35 @@ class App extends Component {
 
     listFromArray(songs) {
         const listItems = songs.map((song, index)=>{
-            console.log(this.state.editable.index);
             if (index === this.state.editable.index){
-            return <ListGroup.Item key={`${ song.artist }${ song.song }`}>
-            <Row>
-                <Col>
-                    <Form>
-                        <Row>
-                            <Col>
-                                <Form.Control 
-                                onChange={event=>this.onChangeArtist(event)}
-                                value={song.artist} 
-                                />
-                            </Col>
-                            <Col>
-                                <Form.Control 
-                                onChange={event=>this.onChangeSong(event)}
-                                value={song.song}
-                                />
-                            </Col>
-                        </Row>
-                    </Form>
-                </Col>
-                <Col>
-                    <Button variant='outline-danger' onClick={()=>this.onSave(index)}>Save</Button>
-                </Col>
-            </Row>
-        </ListGroup.Item>
+            return( 
+            <ListGroup.Item key={`edit${ song.artist }${ song.song }`}>
+                <Row>
+                    <Col>
+                        <Form>
+                            <Row>
+                                <Col>
+                                    <Form.Control
+                                        onChange={event=>this.onChangeArtist(event, index)}
+                                        value={this.state.editable.artist}
+                                    />
+                                </Col>
+                                <Col>
+                                    <Form.Control 
+                                        onChange={event=>this.onChangeSong(event, index)}
+                                        value={this.state.editable.song}
+                                    />
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Col>
+                    <Col>
+                        <Button variant='outline-danger' onClick={()=>this.onSave(index)}>Save</Button>
+                    </Col>
+                </Row>
+            </ListGroup.Item>)
         }
-            return <ListGroup.Item key={`${ song.artist }${ song.song }`}>
+            return <ListGroup.Item  key={`${ song.artist }${ song.song }`}>
                 <Row>
                     <Col>
                         {`${ index + 1 }: ${ song.artist }, ${ song.song }`}
@@ -85,16 +86,19 @@ class App extends Component {
         return listItems;
     }
 
-    onAddSong(values) {
-        this.setState({songs:[...this.state.songs, values]});
-    }
+        onAddSong(values) {
+            let songs = {songs:[...this.state.songs, values]};
+            this.setState(songs);
+        }
 
     onChangeSong(event){
-        this.setState({song: event.target.value});
+        this.setState({editable:{...this.state.editable, song:event.target.value}});
     }
+
+    
   
-    onChangeArtist(event) {
-        this.setState({artist: event.target.value});
+    onChangeArtist(event, index) {
+        this.setState({editable:{...this.state.editadle, artist:event.target.value}});
     }
 
     onEdit(index){
@@ -109,13 +113,13 @@ class App extends Component {
         this.setState({songs:[...filtered]});
     }
 
-    onSave(values) {
-        console.log(values);
-        this.props.onAddSong({...this.state});
+    onSave(index) {
+        const songs = this.state.songs;
+        songs[index] = {artist: this.state.editable.artist, song: this.state.editable.song}
         this.setState({
-            artist:'',
-            song:'' 
-         });
+            editable:{index: -1, artist:'', song:''},
+            songs:[...songs]
+        });
     }
 }
 

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row, Col, } from 'react-bootstrap';
 
 const FIELD_ID_ARTIST = 'artist';
 const FIELD_ID_SONG = 'song';
@@ -31,17 +31,25 @@ export default class AddForm extends Component {
                 </Form.Group>
                 <Form.Group >
                     <Button onClick={()=>this.onSubmit()}>Add</Button>
+                    Number of songs: {`${ index + 1 }}
                 </Form.Group>
+                
             </Form>
         );
     }
-
+    
     onSubmit() {
         this.props.onAddSong({...this.state});
         this.setState({
             artist:'',
             song:'' 
          });
+    }
+
+    NumberOfSongs(index){
+        index = 0;
+        const num = index + 1;
+        return num;
     }
 
     onFormChange(event) {
