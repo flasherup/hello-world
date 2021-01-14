@@ -11,7 +11,12 @@ class App extends Component {
         super(props);
 
         this.state = {
-            songs:[]
+            songs:[
+                { artist:'Caroline Rose', song: 'Feel the Way I Want' },
+                { artist:'Sam Hunt', song: 'Hard to Forget' },
+                { artist:'Jarv Is', song: 'House Music All Night Long' },
+                { artist:'Bill Callahan', song: 'Pigeons' },
+            ]
         }
         main();
     }
