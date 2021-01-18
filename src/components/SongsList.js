@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import {Row, Col, Button, ListGroup} from 'react-bootstrap';
+import Sorter from './Sorter';
 
 export default class SongsList  extends Component {
     render() {
         const items = this.listFromArray(this.props.songs);
         return (
-        <ListGroup>
-            { items }
-        </ListGroup>
+            <Row>
+                <Col>
+                    <Row>
+                        <Col>
+                            <Sorter songs={ this.props.songs } />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <ListGroup>
+                            { items }
+                            </ListGroup>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
       )
     }
 
