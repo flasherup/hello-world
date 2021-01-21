@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import {Row, Col, Button, ListGroup} from 'react-bootstrap';
+import { connect } from 'react-redux';
+
 import Sorter from './Sorter';
 
-export default class SongsList  extends Component {
+
+class SongsList  extends Component {
     render() {
         const items = this.listFromArray(this.props.songs);
         return (
@@ -43,3 +46,11 @@ export default class SongsList  extends Component {
         return listItems;
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        songs: state.songs
+    }
+}
+
+export default connect(mapStateToProps)(SongsList);

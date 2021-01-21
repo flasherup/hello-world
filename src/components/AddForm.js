@@ -1,10 +1,12 @@
 import React,{Component} from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { addSong } from '../actions'
 
 const FIELD_ID_ARTIST = 'artist';
 const FIELD_ID_SONG = 'song';
 
-export default class AddForm extends Component {
+class AddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,7 +39,8 @@ export default class AddForm extends Component {
     }
 
     onSubmit() {
-        this.props.onAddSong({...this.state});
+        ///this.props.onAddSong({...this.state});
+        this.props.addSong(this.state.artist, this.state.song)
         this.setState({
             artist:'',
             song:'' 
@@ -56,3 +59,11 @@ export default class AddForm extends Component {
         }
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addSong: (artist, song)=>dispatch(addSong(artist, song))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AddForm);

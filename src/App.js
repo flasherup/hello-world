@@ -7,19 +7,6 @@ import SongsList from './components/SongsList'
 
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            songs:[
-                { artist:'Caroline Rose', song: 'Feel the Way I Want' },
-                { artist:'Sam Hunt', song: 'Hard to Forget' },
-                { artist:'Jarv Is', song: 'House Music All Night Long' },
-                { artist:'Bill Callahan', song: 'Pigeons' },
-            ]
-        }
-        main();
-    }
     render() {
         return (
             <Container>
@@ -30,16 +17,12 @@ class App extends Component {
                 </Row>
                 <Row>
                     <Col>
-                        <AddForm onAddSong={values=>this.onAddSong(values)}/>
+                        <AddForm/>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <Counter 
-                            count={ this.state.songs.length }
-                        >
-                            Child inside { this.state.songs.length }
-                        </Counter>
+                        <Counter/>
                     </Col>
                 </Row>
                 <Row>
@@ -50,7 +33,7 @@ class App extends Component {
                 <Row>
                    
                     <Col>
-                      <SongsList songs={ this.state.songs } onDelete={ index=>this.onDelete(index)}>
+                      <SongsList onDelete={ index=>this.onDelete(index)}>
                       </SongsList>
                     </Col>
 
@@ -58,32 +41,12 @@ class App extends Component {
             </Container>
         );
     }
-/*
-    listFromArray(songs) {
-        const listItems = songs.map((song, index)=>(
-            <ListGroup.Item key={`songKey${ index }`}>
-                <Row>
-                    <Col>
-                        {`${ index + 1 }: ${ song.artist }, ${ song.song }`}
-                    </Col>
-                    <Col>
-                        <Button variant='outline-danger' onClick={()=>this.onDelete(index)}>Delete</Button>
-                    </Col>
-                </Row>
-            </ListGroup.Item>
-        ));
-        return listItems;
-    }
-*/
-    onAddSong(values) {
-        this.setState({songs:[...this.state.songs, values]});
-    }
 
     onDelete(index) {
-        const filtered = this.state.songs.filter((_, i) => {
+        /*const filtered = this.state.songs.filter((_, i) => {
             return i !== index;
         })
-        this.setState({songs:[...filtered]});
+        this.setState({songs:[...filtered]});*/
     }
 }
 
