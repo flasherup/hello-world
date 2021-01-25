@@ -1,4 +1,4 @@
-import { ADD_SONG } from '../actions'
+import { ADD_SONG, DELETE_SONG } from '../actions';
 
 const defaultState = {
     songs:[
@@ -14,6 +14,11 @@ export const root = (state = defaultState, action) => {
         case ADD_SONG:
             return {
                 songs:[...state.songs, action.payload]
+            }
+        case DELETE_SONG:
+            const filtered = state.songs.filter((_, i) => i !== action.payload);
+            return {
+                songs:filtered
             }
         default:
         return state;

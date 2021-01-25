@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Row, Col, Button, ListGroup} from 'react-bootstrap';
 import { connect } from 'react-redux';
 
+import { deleteSong } from '../actions'
+
 import Sorter from './Sorter';
 
 
@@ -37,7 +39,7 @@ class SongsList  extends Component {
                             {`${ index + 1 }: ${ song.artist }, ${ song.song }`}
                         </Col>
                         <Col>
-                            <Button variant='outline-danger' onClick={()=>this.props.onDelete(index)}>Delete</Button>
+                            <Button variant='outline-danger' onClick={()=>this.props.deleteSDong(index)}>Delete</Button>
                         </Col>
                     </Row>
                 </ListGroup.Item>
@@ -47,10 +49,12 @@ class SongsList  extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
+const mapStateToProps = (state) => ({
         songs: state.songs
-    }
-}
+    })
 
-export default connect(mapStateToProps)(SongsList);
+const mapDispatchToProps = dispatch => ({
+    deleteSDong: index=>dispatch(deleteSong(index))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SongsList);
