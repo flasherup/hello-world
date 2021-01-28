@@ -1,3 +1,8 @@
 node_modules/
+<<<<<<< HEAD
 package-lock.json
 .eslintcache
+=======
+.eslintcache
+.vscode/launch.json
+>>>>>>> 59b8ea715b1310edf626ea3ffa19087b2617b433

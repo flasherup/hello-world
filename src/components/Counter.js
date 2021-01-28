@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class Counter extends Component{
+class Counter extends Component{
     render() {
-        console.log('props:', this.props)
         return <div>Counter { this.props.count }</div>;
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        count: state.songs.length
+    }
+}
+
+export default connect(mapStateToProps)(Counter);
