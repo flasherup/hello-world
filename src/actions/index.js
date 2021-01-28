@@ -10,3 +10,10 @@ export const deleteSong = index => ({
     type: DELETE_SONG,
     payload: index
 })
+
+export const SORT_SONGS = 'SORT_SONGS';
+export const sortSongs = type => ({
+    type: SORT_SONGS,
+    payload: type
+})
+
