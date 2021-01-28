@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { sortLogic } from './middlewares'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { root } from './reducers';
 
-const store = createStore(root);
+const store = createStore(root, applyMiddleware(sortLogic));
 
 ReactDOM.render(
   <Provider store={store}>

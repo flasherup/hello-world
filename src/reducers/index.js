@@ -1,4 +1,4 @@
-import { ADD_SONG, DELETE_SONG } from '../actions';
+import { ADD_SONG, DELETE_SONG, SORT_SONGS } from '../actions';
 
 const defaultState = {
     songs:[
@@ -6,13 +6,15 @@ const defaultState = {
         { artist:'Sam Hunt',        song: 'Hard to Forget' },
         { artist:'Jarv Is',         song: 'House Music All Night Long' },
         { artist:'Bill Callahan',   song: 'Pigeons' },
-    ]
+    ],
+    sortType: 'default'
 }
 
 export const root = (state = defaultState, action) => {
     switch (action.type) {
         case ADD_SONG:
             return {
+                ...state, 
                 songs:[...state.songs, action.payload]
             }
         case DELETE_SONG:
@@ -20,6 +22,12 @@ export const root = (state = defaultState, action) => {
             return {
                 songs:filtered
             }
+        case SORT_SONGS: {
+            return {
+                ...state, 
+                sortType:action.payload
+            }
+        }
         default:
         return state;
     }
