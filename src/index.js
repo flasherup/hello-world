@@ -6,13 +6,13 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { sortLogic } from './middlewares'
+import { sortLogic, deleteSongLogic } from './middlewares'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { root } from './reducers';
 
-const store = createStore(root, applyMiddleware(sortLogic));
+const store = createStore(root, applyMiddleware(sortLogic, deleteSongLogic));
 
 ReactDOM.render(
   <Provider store={store}>

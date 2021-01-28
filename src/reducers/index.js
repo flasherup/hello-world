@@ -18,9 +18,9 @@ export const root = (state = defaultState, action) => {
                 songs:[...state.songs, action.payload]
             }
         case DELETE_SONG:
-            const filtered = state.songs.filter((_, i) => i !== action.payload);
             return {
-                songs:filtered
+                ...state, 
+                songs:action.payload
             }
         case SORT_SONGS: {
             return {
