@@ -1,4 +1,4 @@
-import { ADD_SONG, sortSongs, DELETE_SONG } from '../actions'
+import { ADD_SONG, sortSongs, DELETE_SONG , DOWNLOAD_JSON} from '../actions'
 
 
 export const sortLogic = storeAPI => next => action => {
@@ -13,7 +13,6 @@ export const sortLogic = storeAPI => next => action => {
 }
 
 export const deleteSongLogic = storeAPI => next => action => {
-    console.log('dispatching', action)
     if (action.type === DELETE_SONG) {
         const state = storeAPI.getState();
         const filtered = state.songs.filter((_, i) => i !== action.payload);

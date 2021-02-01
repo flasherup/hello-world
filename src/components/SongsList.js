@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Row, Col, Button, ListGroup} from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { deleteSong } from '../actions'
+import { deleteSong, downloadJSON } from '../actions'
 
 import Sorter from './Sorter';
 
@@ -14,6 +14,16 @@ const CLASS_DELETE_BTN = 'songs-list-delete-btn'
 
 class SongsList  extends Component {
     render() {
+        let downloadResId = '';
+        if (this.props.loadedJSON) {
+            downloadResId = this.props.loadedJSON.title;
+        }
+
+        let downloadResError = '';
+        if (this.props.loadedJSONError) {
+            downloadResError = this.props.loadedJSONError;
+        }
+
         const items = this.listFromArray(this.props.songs);
         return (
             <Row className={ CLASS_SONGS_LIST }>
@@ -28,6 +38,14 @@ class SongsList  extends Component {
                             <ListGroup>
                             { items }
                             </ListGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Button onClick={ ()=>this.downloadJSON() } > Download </Button>
+                            <br />
+                            { downloadResId }
+                            { downloadResError }
                         </Col>
                     </Row>
                 </Col>
@@ -52,14 +70,21 @@ class SongsList  extends Component {
         });
         return listItems;
     }
+
+    downloadJSON() {
+        this.props.downloadJSON('https://jsonplaceholder.typicode.com/todos/1');
+    }
 }
 
 const mapStateToProps = (state) => ({
-        songs: state.songs
+        songs: state.songs,
+        loadedJSON: state.loadedJSON,
+        loadedJSONError: state.loadedJSONError,
     })
 
 const mapDispatchToProps = dispatch => ({
-    deleteSDong: index=>dispatch(deleteSong(index))
+    deleteSDong: index=>dispatch(deleteSong(index)),
+    downloadJSON: url=>dispatch(downloadJSON(url))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SongsList);
