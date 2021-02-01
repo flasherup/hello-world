@@ -6,12 +6,17 @@ import { deleteSong } from '../actions'
 
 import Sorter from './Sorter';
 
+import '../css/songsList.css';
+
+const CLASS_SONGS_LIST = 'songs-list';
+const CLASS_DELETE_BTN = 'songs-list-delete-btn'
+
 
 class SongsList  extends Component {
     render() {
         const items = this.listFromArray(this.props.songs);
         return (
-            <Row>
+            <Row className={ CLASS_SONGS_LIST }>
                 <Col>
                     <Row>
                         <Col>
@@ -38,7 +43,7 @@ class SongsList  extends Component {
                         <Col>
                             {`${ index + 1 }: ${ song.artist }, ${ song.song }`}
                         </Col>
-                        <Col>
+                        <Col className={ CLASS_DELETE_BTN }>
                             <Button variant='outline-danger' onClick={()=>this.props.deleteSDong(index)}>Delete</Button>
                         </Col>
                     </Row>

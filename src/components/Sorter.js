@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 
+import '../css/sorter.css';
+
+
+
 export default class Sorter extends Component {
     render() {
         console.log('songs', this.props.songs);
         return (
-            <Row>
-                <Col className='d-flex justify-content-center'>
+            <Row className='sorter'>
+                <Col className='d-flex justify-content-center' >
                     <ButtonGroup>
                         <Button onClick={()=>this.sortByArtist()}>Sort by artist</Button>
                         <Button onClick={()=>this.sortBySong()}>Sort by song</Button>
